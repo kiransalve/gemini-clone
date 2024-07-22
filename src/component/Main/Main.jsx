@@ -8,6 +8,7 @@ import { CiMicrophoneOn } from "react-icons/ci";
 import { IoMdSend } from "react-icons/io";
 import { useContext } from "react";
 import { Context } from "../../context/context";
+import { SiGooglegemini } from "react-icons/si";
 
 const cardsData = [
   {
@@ -27,17 +28,14 @@ const cardsData = [
     prompt: "Improve the readablity of following code",
   },
 ];
+
 const Main = () => {
   const {
     input,
     setInput,
-    prevPrompt,
-    setPrevPrompt,
     onSent,
-    recentInput,
-    setRecentInput,
+    recentPrompt,
     showResult,
-    setShowResult,
     resultData,
     loading,
   } = useContext(Context);
@@ -48,22 +46,47 @@ const Main = () => {
         <CgProfile size={30} />
       </div>
       <div className="main-container">
-        <div className="greet">
-          <p>
-            <span>Hello, Dev</span>
-            <p>How can I help today?</p>
-          </p>
-        </div>
-        <div className="cards">
-          {cardsData.map(({ icon, prompt, index }) => {
-            return (
-              <div className="card" key={index}>
-                <p className="card-title">{prompt}</p>
-                <div className="card-icon">{icon}</div>
+        {!showResult ? (
+          <>
+            <div className="greet">
+              <p>
+                <span>Hello, Dev</span>
+                <p>How can I help today?</p>
+              </p>
+            </div>
+            <div className="cards">
+              {cardsData.map(({ icon, prompt }, index) => {
+                return (
+                  <div className="card" key={index}>
+                    <p className="card-title">{prompt}</p>
+                    <div className="card-icon">{icon}</div>
+                  </div>
+                );
+              })}
+            </div>{" "}
+          </>
+        ) : (
+          <>
+            <div className="result">
+              <div className="result-title">
+                <CgProfile size={30} />
+                <p>{recentPrompt}</p>
               </div>
-            );
-          })}
-        </div>
+              <div className="result-data">
+                <SiGooglegemini size={30} />
+                {loading ? (
+                  <div className="loader">
+                    <hr />
+                    <hr />
+                    <hr />
+                  </div>
+                ) : (
+                  <p dangerouslySetInnerHTML={{ __html: resultData }}></p>
+                )}
+              </div>
+            </div>
+          </>
+        )}
         <div className="main-bottom">
           <div className="search-box">
             <input
@@ -74,7 +97,12 @@ const Main = () => {
             />
             <div className="send-icon">
               <CiMicrophoneOn size={24} />
-              <IoMdSend size={24} onClick={() => onSent()} />
+              <IoMdSend
+                size={24}
+                onKeyDown={() => onSent()}
+                onClick={() => onSent()}
+                className="sent-button"
+              />
             </div>
           </div>
           <p className="bottom-info">

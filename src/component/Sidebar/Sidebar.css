@@ -11,7 +11,6 @@
   margin-left: 10px;
   cursor: pointer;
 }
-
 .sidebar .new-chat {
   display: inline-flex;
   margin-top: 50px;
@@ -25,12 +24,11 @@
   cursor: pointer;
   border-radius: 50px;
 }
-
 .sidebar .recent {
   display: flex;
   flex-direction: column;
+  animation: fadeIn 1.5s;
 }
-
 .sidebar .recent-title {
   margin: 30px 0 20px 0;
   font-size: 17px;
@@ -52,4 +50,9 @@
 .sidebar .bottom {
   display: flex;
   flex-direction: column;
+}
+@media (max-width: 600px) {
+  .sidebar {
+    display: none;
+  }
 }

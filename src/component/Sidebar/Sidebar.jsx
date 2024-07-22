@@ -5,10 +5,17 @@ import { FaQuestion } from "react-icons/fa";
 import { MdMessage } from "react-icons/md";
 import { MdHistory } from "react-icons/md";
 import { IoIosSettings } from "react-icons/io";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { Context } from "../../context/context";
 
 const Sidebar = () => {
   const [extended, setExtended] = useState(true);
+  const { prevPrompt, onSent, setRecentPrompt, newChat } = useContext(Context);
+
+  const loadPrompt = async (prompt) => {
+    setRecentPrompt(prompt);
+    await onSent(prompt);
+  };
 
   return (
     <div className="sidebar">
@@ -18,7 +25,7 @@ const Sidebar = () => {
           className="menu"
           onClick={() => setExtended(!extended)}
         />
-        <div className="new-chat">
+        <div className="new-chat" onClick={() => newChat()}>
           <FaPlus size={24} />
           {extended ? <p>New Chat</p> : null}
         </div>
@@ -26,10 +33,18 @@ const Sidebar = () => {
           <>
             <div className="recent">
               <p className="recent-title">Recent</p>
-              <div className="recent-entry">
-                <MdMessage size={24} />
-                <p>What is react ... </p>
-              </div>
+              {prevPrompt.map((item, index) => {
+                return (
+                  <div
+                    className="recent-entry"
+                    key={index}
+                    onClick={() => loadPrompt(item)}
+                  >
+                    <MdMessage size={24} />
+                    <p>{item.slice(0, 18)} ... </p>
+                  </div>
+                );
+              })}
             </div>
           </>
         )}
