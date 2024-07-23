@@ -1,8 +1,12 @@
 # React + Vite
+# Gemini AI Web clone - By GreatStack
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+![image](https://github.com/user-attachments/assets/4a381e7e-6a5d-406f-88e3-e8f8f6d82eb2)
 
-Currently, two official plugins are available:
+![image](https://github.com/user-attachments/assets/d08b7747-5291-4e30-9a6e-058fbdf47b8f)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+
+![image](https://github.com/user-attachments/assets/f49f90d1-71a4-457b-b3a8-c6d3bb1fc61c)
+
+
+![image](https://github.com/user-attachments/assets/96b5b3cd-a712-4eeb-a1ba-7f2fc70a002f)
